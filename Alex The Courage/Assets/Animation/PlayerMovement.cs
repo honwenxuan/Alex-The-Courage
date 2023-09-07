@@ -209,9 +209,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleHitReaction()
     {
-        
+
         // Trigger the 'GotHit' animation.
-        animator.SetBool("IsHit",true);
+        animator.SetBool("IsHit", true);
 
         // Here you could add more reactions, like reducing health, etc.
     }
@@ -221,6 +221,7 @@ public class PlayerMovement : MonoBehaviour
         if (hit.gameObject.tag == "Enemy")
         {
             HandleHitReaction();
+            FindObjectOfType<AudioManager>().Play("Explode");
         }
     }
 }

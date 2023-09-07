@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9153297917254270981
 MonoBehaviour:
@@ -59,6 +59,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Click
     clip: {fileID: 8300000, guid: 32f7f80b76ce63b48a1bc51fd1f48c5d, type: 3}
+    volume: 1
+    pitch: 1.59
+    loop: 0
+    source: {fileID: 0}
+  - name: Explode
+    clip: {fileID: 8300000, guid: 2af2075c35832534889d5452e4e14777, type: 3}
     volume: 1
     pitch: 1.59
     loop: 0
