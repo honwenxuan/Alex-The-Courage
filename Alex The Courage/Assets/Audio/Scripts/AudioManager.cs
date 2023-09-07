@@ -1,12 +1,12 @@
-using UnityEngine.Audio;
 using System;
-using UnityEngine;
 using System.Collections;
-using System.Xml.Linq;
+using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
+    public AudioMixerGroup masterMixerGroup;
     private bool isMuted = false;
     private float originalVolume;
 
@@ -20,6 +20,9 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
             originalVolume = s.volume;
+
+            // Set the Audio Mixer Group to the specified Master Mixer Group
+            s.source.outputAudioMixerGroup = masterMixerGroup;
         }
     }
 

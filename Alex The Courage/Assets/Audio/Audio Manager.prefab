@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9153297917254270981
 MonoBehaviour:
@@ -63,3 +63,4 @@ MonoBehaviour:
     pitch: 1.59
     loop: 0
     source: {fileID: 0}
+  masterMixerGroup: {fileID: 24300002, guid: aab9e4e592828f244a3269cc36335ec6, type: 2}
