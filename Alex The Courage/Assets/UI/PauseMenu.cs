@@ -10,7 +10,16 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            Pause();
+        {
+            if (GameIsPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
     }
 
     public void Resume()
@@ -18,6 +27,10 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+
+        // Lock and hide the cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Pause()
@@ -25,13 +38,20 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+
+        // Unlock and show the cursor
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene(0);
+        // Before loading the menu, make sure to set the time scale back to normal
         Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
+
+        // You may also want to unlock and show the cursor when going back to the menu
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
-
-
 }
