@@ -83,8 +83,11 @@ public class PlayerMovement : MonoBehaviour
                 dashAmountThisFrame = dashDistance - dashDistanceCovered;
             }
 
-            Vector3 dashDirection = movementDirection.normalized * dashAmountThisFrame;
+            Vector3 dashDirection = cameraTransform.forward * verticalInput + cameraTransform.right * horizontalInput;
+            dashDirection.Normalize();
+            dashDirection *= dashAmountThisFrame;
             dashDirection.y = ySpeed;
+
             characterController.Move(dashDirection);
             dashDistanceCovered += dashAmountThisFrame;
 
@@ -93,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
                 isDashing = false;
                 animator.SetBool("IsDashing", false);
             }
+
             if (stateInfo.IsName("Dashing"))
             {
                 float controllerHeight = animator.GetFloat("colliderheight");
@@ -222,7 +226,6 @@ public class PlayerMovement : MonoBehaviour
         {
             HandleHitReaction();
             FindObjectOfType<AudioManager>().Play("Explode");
-            FindObjectOfType<GameManager>().EndGame();
         }
     }
 }
