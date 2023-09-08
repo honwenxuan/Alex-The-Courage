@@ -226,6 +226,7 @@ public class PlayerMovement : MonoBehaviour
         {
             HandleHitReaction();
             FindObjectOfType<AudioManager>().Play("Explode");
+            FindObjectOfType<GameManager>().EndGame();
         }
     }
 }
