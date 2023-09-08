@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 198931528}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -138,6 +138,10 @@ PrefabInstance:
     - target: {fileID: 5631797800135645916, guid: 494b15d93f4e4d948ba5e8bc68bb290a, type: 3}
       propertyPath: m_Name
       value: Boy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8278221580041793803, guid: 494b15d93f4e4d948ba5e8bc68bb290a, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8679408013552888015, guid: 494b15d93f4e4d948ba5e8bc68bb290a, type: 3}
       propertyPath: m_RootOrder
@@ -275,6 +279,10 @@ PrefabInstance:
     - target: {fileID: 1070180938677821099, guid: 4e11453bcfca39744a6385041e573adb, type: 3}
       propertyPath: m_Name
       value: Pause Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1070180938677821099, guid: 4e11453bcfca39744a6385041e573adb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1984201715319376195, guid: 4e11453bcfca39744a6385041e573adb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -525,6 +533,7 @@ GameObject:
   - component: {fileID: 896519414}
   - component: {fileID: 896519413}
   - component: {fileID: 896519412}
+  - component: {fileID: 896519416}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -549,7 +558,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -619,6 +628,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &896519416
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896519411}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &916422526
 GameObject:
   m_ObjectHideFlags: 3
@@ -1339,7 +1369,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842286375}
-  m_LocalRotation: {x: 0.10224695, y: -0.08651309, z: 0.008926485, w: 0.99094975}
+  m_LocalRotation: {x: 0.102246955, y: -0.08651304, z: 0.008926482, w: 0.99094975}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1466,7 +1496,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: aab9e4e592828f244a3269cc36335ec6, type: 2}
   m_audioClip: {fileID: 8300000, guid: 31d9fa31b9cb7b342ab3d1979ab493f0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.562
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1951,9 +1981,17 @@ PrefabInstance:
       propertyPath: moon
       value: 
       objectReference: {fileID: 1528106551}
+    - target: {fileID: 3787887982854796004, guid: 325b286a42635fc4794d7c193499255d, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4466405663196940536, guid: 325b286a42635fc4794d7c193499255d, type: 3}
       propertyPath: m_Name
       value: DayNightCycle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842166930631126534, guid: 325b286a42635fc4794d7c193499255d, type: 3}
+      propertyPath: m_Volume
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
