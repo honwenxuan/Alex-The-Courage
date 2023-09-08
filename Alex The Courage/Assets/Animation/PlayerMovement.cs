@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
                 dashAmountThisFrame = dashDistance - dashDistanceCovered;
             }
 
-            Vector3 dashDirection = cameraTransform.forward * dashAmountThisFrame;
+            Vector3 dashDirection = movementDirection.normalized * dashAmountThisFrame;
             dashDirection.y = ySpeed;
             characterController.Move(dashDirection);
             dashDistanceCovered += dashAmountThisFrame;
