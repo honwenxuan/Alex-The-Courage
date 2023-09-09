@@ -3,8 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
+    public static bool GameIsPaused;
     public GameObject pauseMenuUI;
+
+    private bool isCursorLocked = true; // Track the cursor lock state 
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor when the game scene starts
+        Cursor.visible = false; // Hide the cursor when the game scene starts
+        GameIsPaused = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -28,7 +37,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
 
-        // Lock and hide the cursor
+        // Lock the cursor and hide it
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -39,7 +48,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         GameIsPaused = true;
 
-        // Unlock and show the cursor
+        // Unlock the cursor and make it visible
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }

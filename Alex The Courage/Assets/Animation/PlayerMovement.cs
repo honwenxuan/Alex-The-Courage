@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
             lastGroundedTime = Time.time;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && characterController.isGrounded) // Check if the player is grounded
         {
             jumpButtonPressedTime = Time.time;
 
