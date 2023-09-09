@@ -753,6 +753,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1349714863}
+    - target: {fileID: 7395993655671242064, guid: 4e11453bcfca39744a6385041e573adb, type: 3}
+      propertyPath: optionMenu
+      value: 
+      objectReference: {fileID: 133683250}
     - target: {fileID: 8800917507830797939, guid: 4e11453bcfca39744a6385041e573adb, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2631,7 +2635,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842286375}
-  m_LocalRotation: {x: 0.10224695, y: -0.08651309, z: 0.008926485, w: 0.99094975}
+  m_LocalRotation: {x: 0.102246955, y: -0.08651304, z: 0.008926482, w: 0.99094975}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

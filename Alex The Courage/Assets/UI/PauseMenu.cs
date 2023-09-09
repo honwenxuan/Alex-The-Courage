@@ -5,6 +5,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused;
     public GameObject pauseMenuUI;
+    public GameObject optionMenu;
 
     private bool isCursorLocked = true; // Track the cursor lock state 
 
@@ -18,7 +19,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!IsOptionMenuOpen() && Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
             {
@@ -28,6 +29,11 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
+        }
+        else if (IsOptionMenuOpen() && Input.GetKeyDown(KeyCode.Escape))
+        {
+            optionMenu.SetActive(false);
+            pauseMenuUI.SetActive(true);
         }
     }
 
@@ -62,5 +68,17 @@ public class PauseMenu : MonoBehaviour
         // You may also want to unlock and show the cursor when going back to the menu
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    bool IsOptionMenuOpen()
+    {
+        if (optionMenu != null && optionMenu.activeSelf)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
