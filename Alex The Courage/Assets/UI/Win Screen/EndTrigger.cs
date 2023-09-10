@@ -7,5 +7,9 @@ public class EndTrigger : MonoBehaviour
     private void OnTriggerEnter()
     {
         gameManager.CompleteLevel();
+
+        // Unlock the cursor and make it visible
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

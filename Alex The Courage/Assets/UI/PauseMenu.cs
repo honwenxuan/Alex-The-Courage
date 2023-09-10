@@ -6,8 +6,7 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused;
     public GameObject pauseMenuUI;
     public GameObject optionMenu;
-
-    private bool isCursorLocked = true; // Track the cursor lock state 
+    public GameObject levelCompleteUI;
 
     private void Start()
     {
@@ -19,7 +18,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!IsOptionMenuOpen() && Input.GetKeyDown(KeyCode.Escape))
+        if (!IsOptionMenuOpen() && !IsLevelCompleteUIOpen() && Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
             {
@@ -73,6 +72,18 @@ public class PauseMenu : MonoBehaviour
     bool IsOptionMenuOpen()
     {
         if (optionMenu != null && optionMenu.activeSelf)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    bool IsLevelCompleteUIOpen()
+    {
+        if (levelCompleteUI != null && levelCompleteUI.activeSelf)
         {
             return true;
         }
