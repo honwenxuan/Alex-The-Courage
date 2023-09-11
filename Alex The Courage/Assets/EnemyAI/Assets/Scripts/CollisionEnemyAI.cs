@@ -1,7 +1,4 @@
 //using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 //using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -35,7 +32,6 @@ public class CollisionEnemyAI : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("playerObj").transform;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         patrolTarget = GetRandomPatrolTarget();
@@ -120,7 +116,8 @@ public class CollisionEnemyAI : MonoBehaviour
         transform.LookAt(player);
 
 
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack")) {
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
             animator.SetTrigger("Attack");
             agent.SetDestination(transform.position);
 

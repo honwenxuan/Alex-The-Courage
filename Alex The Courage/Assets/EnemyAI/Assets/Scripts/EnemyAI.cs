@@ -1,14 +1,11 @@
 //using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 //using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    
+
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -31,9 +28,8 @@ public class EnemyAI : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-    private void Awake() 
+    private void Awake()
     {
-        player = GameObject.Find("playerObj").transform;
         agent = GetComponent<NavMeshAgent>();
         patrolTarget = GetRandomPatrolTarget();
 
@@ -43,7 +39,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -53,19 +49,19 @@ public class EnemyAI : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if(!playerInSightRange && !playerInAttackRange)
+        if (!playerInSightRange && !playerInAttackRange)
         {
-            isPatrolling = true; 
+            isPatrolling = true;
             Patrolling();
         }
 
-        if(playerInSightRange && !playerInAttackRange)
+        if (playerInSightRange && !playerInAttackRange)
         {
             isPatrolling = false; // Enemy is no longer patrolling
             Chasing();
         }
 
-        if(playerInSightRange && playerInAttackRange)
+        if (playerInSightRange && playerInAttackRange)
         {
             isPatrolling = false; // Enemy is no longer patrolling
             Attacking();
@@ -139,7 +135,7 @@ public class EnemyAI : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    private void OnDrawGizmosSelected() 
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
