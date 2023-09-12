@@ -115,22 +115,19 @@ public class CollisionEnemyAI : MonoBehaviour
     {
         transform.LookAt(player);
 
-        if (!alreadyAttacked) // Check if already attacked
+
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
+            animator.SetTrigger("Attack");
+            agent.SetDestination(transform.position);
+
+            // Slow down player here
             if (player.GetComponent<PlayerMovement>()) // Check if the player has a PlayerMovement script
             {
                 player.GetComponent<PlayerMovement>().SlowDownPlayer(0.5f, 2f); // Slow down player by a factor of 0.5 for 2 seconds
             }
-
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-            {
-                animator.SetTrigger("Attack");
-                agent.SetDestination(transform.position);
-
-                alreadyAttacked = true; // Set the flag
-                Invoke(nameof(ResetAttack), timeBetweenAttacks); // Reset the flag after 'timeBetweenAttacks'
-            }
         }
+        //Make sure enemy doesn't move
 
     }
 

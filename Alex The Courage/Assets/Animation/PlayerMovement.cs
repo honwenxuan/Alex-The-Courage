@@ -141,11 +141,27 @@ public class PlayerMovement : MonoBehaviour
     }
     public void SlowDownPlayer(float slowDownFactor, float duration)
     {
-        walkingSpeed *= slowDownFactor; // Slow down the player
-        Invoke("RestoreSpeed", duration); // Restore original speed after 'duration' seconds
+        Debug.Log($"Original Speed: {originalWalkingSpeed}");
+
+        // Slow down the player
+        float newSpeed = originalWalkingSpeed * slowDownFactor;
+
+        // Ensure the new speed does not fall below 1.0f
+        if (newSpeed < 0.7f)
+        {
+            newSpeed = 0.7f;
+        }
+
+        walkingSpeed = newSpeed;
+
+        Debug.Log($"New Speed: {walkingSpeed}");
+
+        // Restore original speed after 'duration' seconds
+        Invoke("RestoreSpeed", duration);
     }
     private void RestoreSpeed()
     {
+        Debug.Log($"Restoring to Original Speed: {originalWalkingSpeed}");
         walkingSpeed = originalWalkingSpeed; // Restore the speed
     }
 
