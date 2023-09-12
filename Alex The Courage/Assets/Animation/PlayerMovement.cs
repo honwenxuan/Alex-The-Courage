@@ -64,13 +64,13 @@ public class PlayerMovement : MonoBehaviour
             footsteps.enabled = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && inputMagnitude > 0.1f && !isJumping && (!lastDashTime.HasValue || Time.time - lastDashTime.Value > dashCooldown))
+        if (Input.GetKeyDown(KeyCode.E) && inputMagnitude > 0.1f && !isJumping && !isDashing && isGrounded && (!lastDashTime.HasValue || Time.time - lastDashTime.Value > dashCooldown))
         {
             lastDashTime = Time.time;
             isDashing = true;
             dashDistanceCovered = 0f;
             animator.SetBool("IsDashing", isDashing);
-
+           
             // roll sound
             FindObjectOfType<AudioManager>().Play("Roll");
         }
@@ -95,7 +95,15 @@ public class PlayerMovement : MonoBehaviour
             {
                 isDashing = false;
                 animator.SetBool("IsDashing", false);
+                if (characterController.isGrounded)
+                {
+                    ySpeed = -5f; // Reset to some grounded value only when on the ground
+                }
+                
             }
+            ySpeed = -5f;
+           
+
 
             if (stateInfo.IsName("Dashing"))
             {
@@ -110,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
             characterController.height = startColliderHeight;
             float centerY = characterController.height / 2;
             characterController.center = new Vector3(characterController.center.x, centerY, characterController.center.z);
+            ySpeed += Physics.gravity.y * Time.deltaTime;
         }
 
         animator.SetFloat("InputMagnitude", inputMagnitude, 0.05f, Time.deltaTime);
@@ -120,7 +129,10 @@ public class PlayerMovement : MonoBehaviour
         HandleGroundedStatus();
         HandleMovement(movementDirection, inputMagnitude);
 
-
+        Debug.Log("ySpeed: " + ySpeed);
+        Debug.Log("isJumping: " + isJumping);
+        Debug.Log("isDashing: " + isDashing);
+        Debug.Log("isGrounded: " + characterController.isGrounded);
     }
 
     private void HandleGroundedStatus()
@@ -138,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Jump");
         }
 
-        if (Time.time - lastGroundedTime <= jumpButtonGracePeriod)
+        if (Time.time - lastGroundedTime <= jumpButtonGracePeriod && !isDashing)
         {
             // Ensure that stepOffset doesn't exceed the height
             characterController.stepOffset = Mathf.Min(originalStepOffset, characterController.height - 0.01f); // subtract a small value to ensure it's always slightly less than height
