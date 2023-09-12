@@ -129,10 +129,7 @@ public class PlayerMovement : MonoBehaviour
         HandleGroundedStatus();
         HandleMovement(movementDirection, inputMagnitude);
 
-        Debug.Log("ySpeed: " + ySpeed);
-        Debug.Log("isJumping: " + isJumping);
-        Debug.Log("isDashing: " + isDashing);
-        Debug.Log("isGrounded: " + characterController.isGrounded);
+       
     }
 
     private void HandleGroundedStatus()
