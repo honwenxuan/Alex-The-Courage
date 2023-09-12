@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PlayerMovement : MonoBehaviour
 {
     public GameManager gameManager;
