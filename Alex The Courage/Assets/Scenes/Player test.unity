@@ -920,6 +920,11 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: aae5eb56e22561e4b9606341d666637b, type: 2}
+--- !u!95 &997986891 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 490465362435717119, guid: 2a355be88013cfb4586f310dc186a7ec, type: 3}
+  m_PrefabInstance: {fileID: 224938091595776466}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1027974161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1167,7 +1172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFinished: 0
-  animator: {fileID: 0}
+  animator: {fileID: 997986891}
   gameManager: {fileID: 1471644585}
 --- !u!65 &1200316359
 BoxCollider:
@@ -2165,6 +2170,14 @@ PrefabInstance:
     - target: {fileID: 2330303001741640398, guid: 2a355be88013cfb4586f310dc186a7ec, type: 3}
       propertyPath: jumpSpeed
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2330303001741640398, guid: 2a355be88013cfb4586f310dc186a7ec, type: 3}
+      propertyPath: dashDistance
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2330303001741640398, guid: 2a355be88013cfb4586f310dc186a7ec, type: 3}
+      propertyPath: walkingSpeed
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 3159168119642753279, guid: 2a355be88013cfb4586f310dc186a7ec, type: 3}
       propertyPath: m_LocalRotation.y
