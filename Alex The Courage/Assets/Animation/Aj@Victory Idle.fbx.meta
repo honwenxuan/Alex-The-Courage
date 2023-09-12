@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a012f389f90c1a44d8ab1068c848af34
+guid: 376a0b0daf5ce3f4ca5fd63f56aabec3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Victory Idle
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -48,10 +48,10 @@ ModelImporter:
       loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -106,16 +106,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - 9c0a13aefffa4ed4884f1e7bf6c9a7ad
-  - 9a6c940b08615b14ba61a140e1ece371
-  - 14e3ada245bfd934fbfcd5a52bc7d192
-  - a324fcf755a81874389e05eb775491f1
-  - eb57c09964350d446b4bc40e74080b01
-  - 0b1e34c1b7306c245b941c31452e8acc
-  - 905dd294ce399bb40b9e743cb50167f9
-  - 651cddcd376df174b86824b042c4d9d8
-  - 376a0b0daf5ce3f4ca5fd63f56aabec3
+  referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
@@ -1018,11 +1009,11 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: a012f389f90c1a44d8ab1068c848af34, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
