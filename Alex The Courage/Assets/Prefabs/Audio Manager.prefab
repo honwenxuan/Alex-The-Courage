@@ -65,7 +65,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Explode
     clip: {fileID: 8300000, guid: 2af2075c35832534889d5452e4e14777, type: 3}
-    volume: 1
+    volume: 0.2
     pitch: 1.59
     loop: 0
     source: {fileID: 0}
