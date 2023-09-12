@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameManager gameManager;
+
     [SerializeField]
     private float rotationSpeed;
     [SerializeField]
@@ -70,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
             isDashing = true;
             dashDistanceCovered = 0f;
             animator.SetBool("IsDashing", isDashing);
-           
+
             // roll sound
             FindObjectOfType<AudioManager>().Play("Roll");
         }
@@ -99,10 +101,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     ySpeed = -5f; // Reset to some grounded value only when on the ground
                 }
-                
+
             }
             ySpeed = -5f;
-           
+
 
 
             if (stateInfo.IsName("Dashing"))
@@ -129,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
         HandleGroundedStatus();
         HandleMovement(movementDirection, inputMagnitude);
 
-       
+
     }
 
     private void HandleGroundedStatus()
@@ -238,4 +240,15 @@ public class PlayerMovement : MonoBehaviour
             FindObjectOfType<GameManager>().EndGame();
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Checkpoint"))
+        {
+            gameManager.isCheckpointReached = true;
+            gameManager.checkpoint = other.transform.position;
+            Destroy(other.gameObject);
+        }
+    }
+
 }

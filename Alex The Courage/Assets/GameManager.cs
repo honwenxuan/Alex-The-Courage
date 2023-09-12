@@ -4,16 +4,38 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     bool gameHasEnded = false;
-    public float restartDelay = 2f;
+    public float respawnDelay = 2f;
     public GameObject completeLevelUI;
+    public GameObject player;
+    public Transform spawnPoint;
+    public Vector3 checkpoint;
+    public bool isCheckpointReached = false;
+
+
+    private void Update()
+    {
+        if (player.transform.position.y < -10)
+        {
+            player.transform.position = spawnPoint.position;
+        }
+    }
+
 
     public void EndGame()
     {
-        if (gameHasEnded == false)
+        //if (gameHasEnded == false)
+        //{
+        //    gameHasEnded = true;
+        //    Debug.Log("Game Over");
+        //    Invoke("Respawn", respawnDelay);
+        //}
+        if (isCheckpointReached)
         {
-            gameHasEnded = true;
-            Debug.Log("Game Over");
-            Invoke("Restart", restartDelay);
+            Invoke("CheckpointRespawn", respawnDelay);
+        }
+        else
+        {
+            Invoke("Respawn", respawnDelay);
         }
 
     }
@@ -26,5 +48,15 @@ public class GameManager : MonoBehaviour
     void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void Respawn()
+    {
+        player.transform.position = spawnPoint.position;
+    }
+
+    void CheckpointRespawn()
+    {
+        player.transform.position = checkpoint;
     }
 }
