@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PlayerMovement : MonoBehaviour
 {
     public GameManager gameManager;
@@ -14,12 +12,15 @@ public class PlayerMovement : MonoBehaviour
     private float jumpHorizontalSpeed;
     [SerializeField]
     private Transform cameraTransform;
+    [SerializeField]
+    private float walkingSpeed = 1.5f;
 
     private float dashSpeed = 10f; // units per second
     [SerializeField]
     private float dashDistance = 6f;
     [SerializeField]
     private float dashCooldown = 2f;
+
     private float dashDuration = 1f; // dash lasts for 0.5 seconds
     private float dashDistanceCovered = 0f; // track how much of the dash distance has been covered
     private float? lastDashTime;
@@ -34,15 +35,18 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool isDashing;
     float startColliderHeight = 0;
+    private float originalWalkingSpeed;
 
     public AudioSource footsteps;
 
     void Start()
     {
+
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
         startColliderHeight = characterController.height;
+        originalWalkingSpeed = walkingSpeed;
         //characterController.skinWidth = 0.02f; // Adjust the skin width as needed
     }
 
@@ -133,6 +137,15 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
+    public void SlowDownPlayer(float slowDownFactor, float duration)
+    {
+        walkingSpeed *= slowDownFactor; // Slow down the player
+        Invoke("RestoreSpeed", duration); // Restore original speed after 'duration' seconds
+    }
+    private void RestoreSpeed()
+    {
+        walkingSpeed = originalWalkingSpeed; // Restore the speed
+    }
 
     private void HandleGroundedStatus()
     {
@@ -208,7 +221,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded && !isDashing)
         {
-            Vector3 velocity = animator.deltaPosition;
+            Vector3 velocity = animator.deltaPosition * walkingSpeed;  // Multiply by walkingSpeed
             velocity.y = ySpeed * Time.deltaTime;
             characterController.Move(velocity);
         }
