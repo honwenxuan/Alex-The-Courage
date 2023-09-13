@@ -47,8 +47,9 @@ public class GameManager : MonoBehaviour
         completeLevelUI.SetActive(true);
     }
 
-    void Restart()
+    public void Restart()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

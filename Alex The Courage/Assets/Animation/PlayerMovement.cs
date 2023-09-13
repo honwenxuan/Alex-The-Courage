@@ -323,7 +323,7 @@ public class PlayerMovement : MonoBehaviour
                 Knockback();
             }
         }
-        if (hit.gameObject.tag == "Enemy")
+        if (hit.gameObject.CompareTag("Enemy") || hit.gameObject.CompareTag("Bullet"))
         {
             HandleHitReaction();
             FindObjectOfType<AudioManager>().Play("Explode");
