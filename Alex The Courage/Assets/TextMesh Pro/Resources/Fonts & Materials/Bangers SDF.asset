@@ -75,8 +75,8 @@ Material:
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.90909094
-    - _ScaleRatioB: 0.79545456
-    - _ScaleRatioC: 0.53746927
+    - _ScaleRatioB: 0.7386364
+    - _ScaleRatioC: 0.49907863
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -95,7 +95,7 @@ Material:
     - _UnderlaySoftness: 0.48
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
-    - _WeightBold: 0.5
+    - _WeightBold: 0.75
     - _WeightNormal: 0
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
@@ -209,6 +209,21 @@ MonoBehaviour:
       m_Y: 525
       m_Width: 69
       m_Height: 107
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+  - m_Index: 51
+    m_Metrics:
+      m_Width: 67.078125
+      m_Height: 106.171875
+      m_HorizontalBearingX: 0.5625
+      m_HorizontalBearingY: 106.03125
+      m_HorizontalAdvance: 49.078125
+    m_GlyphRect:
+      m_X: 311
+      m_Y: 653
+      m_Width: 68
+      m_Height: 108
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
@@ -557,21 +572,6 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
-  - m_Index: 51
-    m_Metrics:
-      m_Width: 67.078125
-      m_Height: 106.171875
-      m_HorizontalBearingX: 0.5625
-      m_HorizontalBearingY: 106.03125
-      m_HorizontalAdvance: 49.078125
-    m_GlyphRect:
-      m_X: 311
-      m_Y: 653
-      m_Width: 68
-      m_Height: 108
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
   m_CharacterTable:
   - m_ElementType: 1
     m_Unicode: 32
@@ -588,6 +588,10 @@ MonoBehaviour:
   - m_ElementType: 1
     m_Unicode: 67
     m_GlyphIndex: 48
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 70
+    m_GlyphIndex: 51
     m_Scale: 1
   - m_ElementType: 1
     m_Unicode: 79
@@ -680,10 +684,6 @@ MonoBehaviour:
   - m_ElementType: 1
     m_Unicode: 121
     m_GlyphIndex: 102
-    m_Scale: 1
-  - m_ElementType: 1
-    m_Unicode: 70
-    m_GlyphIndex: 51
     m_Scale: 1
   m_AtlasTextures:
   - {fileID: 28584486757587946}
