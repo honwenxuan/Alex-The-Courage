@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     //knockback
     private Vector3 knockbackDirection;
     private float knockbackDuration = 0.5f;  // 0.5 seconds, change as needed
-    private float knockbackSpeed = 5f;  // speed of knockback
+    private float knockbackSpeed = 15f;  // speed of knockback
     private float? knockbackStartTime;  // time when knockback started
     private bool isKnockedBack = false;  // flag for knockback state
     private float? lastKnockbackTime;
@@ -176,10 +176,10 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
-    private void Knockback()
+    private void Knockback(Vector3 directionFromCubeToPlayer)
     {
         Debug.Log("Knockback called");
-        knockbackDirection = -transform.forward;
+        knockbackDirection = directionFromCubeToPlayer.normalized;
         knockbackStartTime = Time.time;
         isKnockedBack = true;
     }
@@ -319,8 +319,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!lastKnockbackTime.HasValue || Time.time - lastKnockbackTime.Value > knockbackCooldown)
             {
+                // Calculate the direction from the obstacle to the player
+                Vector3 directionFromCubeToPlayer = transform.position - hit.point;
+                directionFromCubeToPlayer.y = 0; // Assuming you want to keep knockback horizontal
+                directionFromCubeToPlayer.Normalize(); // Make it a unit vector
+
+                Knockback(directionFromCubeToPlayer); // Call the Knockback function here
+
                 lastKnockbackTime = Time.time;
-                Knockback();
             }
         }
         if (hit.gameObject.CompareTag("Enemy") || hit.gameObject.CompareTag("Bullet"))
