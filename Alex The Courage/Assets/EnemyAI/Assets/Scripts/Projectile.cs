@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, destroyTime);
-    
+
     }
 
     // Update is called once per frame
@@ -18,22 +18,22 @@ public class Projectile : MonoBehaviour
     {
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // Check if the projectile collides with something
-        // For example, you can check for a "Player" tag or a specific layer
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    // Check if the projectile collides with something
+    //    // For example, you can check for a "Player" tag or a specific layer
 
-        if (other.CompareTag("Player"))
-        {
-            // Handle damage to the player (you can modify this as needed)
-            //PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-            //if (playerHealth != null)
-            //{
-                //playerHealth.TakeDamage(damage);
-            //}
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        // Handle damage to the player (you can modify this as needed)
+    //        //PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+    //        //if (playerHealth != null)
+    //        //{
+    //            //playerHealth.TakeDamage(damage);
+    //        //}
 
-            // Destroy the projectile upon collision
-            Destroy(gameObject);
-        }
-    }
+    //        // Destroy the projectile upon collision
+    //        Destroy(gameObject);
+    //    }
+    //}
 }
