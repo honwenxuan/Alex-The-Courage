@@ -50,4 +50,25 @@ public class PlayerRagdoll : MonoBehaviour
         IsRagdollEnabled = true;
         Debug.Log("Ragdoll Enabled");
     }
+
+    public void RefreshRagdoll()
+    {
+        if (IsRagdollEnabled)
+        {
+            // Re-enable animator and character controller
+            _animator.enabled = true;
+            _characterController.enabled = true;
+            _playerMovement.enabled = true;  // Re-enable player movement script
+            _audioSource.enabled = true;  // Re-enable audio source if you want
+
+            // Make all ragdoll Rigidbodies kinematic again
+            foreach (var rb in _ragdollRigidbodies)
+            {
+                rb.isKinematic = true;
+            }
+
+            IsRagdollEnabled = false;
+            Debug.Log("Ragdoll Refreshed");
+        }
+    }
 }

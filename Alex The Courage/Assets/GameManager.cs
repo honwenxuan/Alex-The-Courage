@@ -53,10 +53,20 @@ public class GameManager : MonoBehaviour
     void Respawn()
     {
         player.transform.position = spawnPoint.position;
+        PlayerRagdoll playerRagdoll = player.GetComponent<PlayerRagdoll>();
+        if (playerRagdoll != null)
+        {
+            playerRagdoll.RefreshRagdoll();
+        }
     }
 
     void CheckpointRespawn()
     {
         player.transform.position = checkpoint;
+        PlayerRagdoll playerRagdoll = player.GetComponent<PlayerRagdoll>();
+        if (playerRagdoll != null)
+        {
+            playerRagdoll.RefreshRagdoll();
+        }
     }
 }
