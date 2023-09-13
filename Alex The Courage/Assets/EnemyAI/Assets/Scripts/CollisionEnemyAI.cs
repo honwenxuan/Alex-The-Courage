@@ -121,16 +121,18 @@ public class CollisionEnemyAI : MonoBehaviour
             animator.SetTrigger("Attack");
             agent.SetDestination(transform.position);
 
-            // Slow down player here
-            if (player.GetComponent<PlayerMovement>()) // Check if the player has a PlayerMovement script
-            {
-                player.GetComponent<PlayerMovement>().SlowDownPlayer(0.5f, 2f); // Slow down player by a factor of 0.5 for 2 seconds
-            }
         }
         //Make sure enemy doesn't move
 
     }
-
+    public void EndOfAttack()
+    {
+        // Slow down player here
+        if (player.GetComponent<PlayerMovement>()) // Check if the player has a PlayerMovement script
+        {
+            player.GetComponent<PlayerMovement>().SlowDownPlayer(0.5f, 2f); // Slow down player by a factor of 0.5 for 2 seconds
+        }
+    }
     private void ResetAttack()
     {
         Debug.Log("NO ATTACK");

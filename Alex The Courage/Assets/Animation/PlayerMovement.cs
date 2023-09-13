@@ -47,6 +47,14 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioSource footsteps;
 
+    //knockback
+    private Vector3 knockbackDirection;
+    private float knockbackDuration = 0.5f;  // 0.5 seconds, change as needed
+    private float knockbackSpeed = 5f;  // speed of knockback
+    private float? knockbackStartTime;  // time when knockback started
+    private bool isKnockedBack = false;  // flag for knockback state
+    private float? lastKnockbackTime;
+    private float knockbackCooldown = 1.0f;
     void Start()
     {
         // Find the player's mesh renderer in the child objects
@@ -66,6 +74,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (isKnockedBack)
+        {
+            float elapsed = Time.time - knockbackStartTime.Value;
+            if (elapsed < knockbackDuration)
+            {
+                // Apply knockback movement
+                Vector3 knockbackVelocity = knockbackDirection * knockbackSpeed;
+                knockbackVelocity.y = ySpeed;
+                characterController.Move(knockbackVelocity * Time.deltaTime);
+                return;  // Exit the Update early if knockback is in effect
+            }
+            else
+            {
+                isKnockedBack = false;
+            }
+        }
+
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -150,6 +175,13 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement(movementDirection, inputMagnitude);
 
 
+    }
+    private void Knockback()
+    {
+        Debug.Log("Knockback called");
+        knockbackDirection = -transform.forward;
+        knockbackStartTime = Time.time;
+        isKnockedBack = true;
     }
     public void SlowDownPlayer(float slowDownFactor, float duration)
     {
@@ -283,6 +315,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        if (hit.gameObject.tag == "Obstacless")
+        {
+            if (!lastKnockbackTime.HasValue || Time.time - lastKnockbackTime.Value > knockbackCooldown)
+            {
+                lastKnockbackTime = Time.time;
+                Knockback();
+            }
+        }
         if (hit.gameObject.tag == "Enemy")
         {
             HandleHitReaction();
