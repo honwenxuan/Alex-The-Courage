@@ -283,7 +283,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.tag == "Enemy")
+        if (hit.gameObject.CompareTag("Enemy") || hit.gameObject.CompareTag("Bullet"))
         {
             HandleHitReaction();
             FindObjectOfType<AudioManager>().Play("Explode");
