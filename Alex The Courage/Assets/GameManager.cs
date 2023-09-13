@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    bool gameHasEnded = false;
     public float respawnDelay = 2f;
     public GameObject completeLevelUI;
     public GameObject player;
@@ -32,12 +31,6 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        //if (gameHasEnded == false)
-        //{
-        //    gameHasEnded = true;
-        //    Debug.Log("Game Over");
-        //    Invoke("Respawn", respawnDelay);
-        //}
         if (isCheckpointReached)
         {
             Invoke("CheckpointRespawn", respawnDelay);

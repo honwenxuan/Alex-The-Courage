@@ -1289,6 +1289,10 @@ PrefabInstance:
       propertyPath: patrolCenterPoint
       value: 
       objectReference: {fileID: 1157407901}
+    - target: {fileID: 3115499909211446160, guid: 3c0dd7164119cb34285ce88e4520ee9e, type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6122876397332326727, guid: 3c0dd7164119cb34285ce88e4520ee9e, type: 3}
       propertyPath: m_Name
       value: EnemyAI
