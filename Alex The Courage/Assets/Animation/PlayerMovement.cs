@@ -3,6 +3,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public GameManager gameManager;
+    public Material blueOverlayMaterial; // Reference to the blue overlay material (assign this in the Inspector)
+
+    private Renderer playerRenderer; // Reference to the player's mesh renderer
+    private Material originalMaterial; // Store the player's original material
+    private Color originalColor; // Store the player's original color
+
 
     [SerializeField]
     private float rotationSpeed;
@@ -43,6 +49,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        // Find the player's mesh renderer in the child objects
+        playerRenderer = GetComponentInChildren<Renderer>();
+
+        // Store the original material and color
+        originalMaterial = playerRenderer.material;
+        originalColor = originalMaterial.color;
 
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
@@ -143,6 +155,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log($"Original Speed: {originalWalkingSpeed}");
 
+        // Change the material color to the blue overlay material
+        playerRenderer.material = blueOverlayMaterial;
+
         // Slow down the player
         float newSpeed = originalWalkingSpeed * slowDownFactor;
 
@@ -163,6 +178,10 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log($"Restoring to Original Speed: {originalWalkingSpeed}");
         walkingSpeed = originalWalkingSpeed; // Restore the speed
+
+        // Restore the original material and color
+        playerRenderer.material = originalMaterial;
+        playerRenderer.material.color = originalColor;
     }
 
     private void HandleGroundedStatus()
@@ -282,6 +301,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-   
+
 
 }

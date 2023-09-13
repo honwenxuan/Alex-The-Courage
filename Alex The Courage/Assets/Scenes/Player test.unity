@@ -2192,6 +2192,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1471644585}
+    - target: {fileID: 2330303001741640398, guid: 2a355be88013cfb4586f310dc186a7ec, type: 3}
+      propertyPath: blueOverlayMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 28e2b2fccc75a344bac4e696b38e6865, type: 2}
     - target: {fileID: 3552691211052924457, guid: 2a355be88013cfb4586f310dc186a7ec, type: 3}
       propertyPath: m_Name
       value: Player

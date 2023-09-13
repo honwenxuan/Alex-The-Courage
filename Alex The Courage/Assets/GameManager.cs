@@ -14,9 +14,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+
+        // respawn when player fall down
         if (player.transform.position.y < -10)
         {
-            player.transform.position = spawnPoint.position;
+            if (isCheckpointReached)
+            {
+                Invoke("CheckpointRespawn", respawnDelay);
+            }
+            else
+            {
+                Invoke("Respawn", respawnDelay);
+            }
         }
     }
 
