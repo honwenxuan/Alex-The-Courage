@@ -30,4 +30,57 @@ public class Bounce : MonoBehaviour
 			//audioSource.Play();
 		}*/
 	}
+
+	/*void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+		if (hit.gameObject.CompareTag("Enemy") || hit.gameObject.CompareTag("Bullet"))
+		{
+			Debug.Log("Collision detected with enemy.");
+			EnableRagdoll();
+		}
+		// Add this block to handle Obstacle collision
+		else if (hit.gameObject.CompareTag("Obstacle"))
+		{
+			Debug.Log("Collision detected with obstacle.");
+			EnableRagdoll();
+		}
+	}*/
+
+    public GameManager gameManager;
+
+    void Start()
+    {
+        // Initialize GameManager (make sure you've set it up in the Inspector or find it dynamically)
+        if (gameManager == null)
+        {
+            gameManager = FindObjectOfType<GameManager>();
+        }
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        GameObject hit = collider.gameObject;
+        if (hit.CompareTag("Player"))
+        {
+            PlayerRagdoll playerRagdoll = hit.GetComponent<PlayerRagdoll>();
+            if (playerRagdoll != null && !playerRagdoll.IsRagdollEnabled)
+            {
+                Debug.Log("Enabling Ragdoll");
+                playerRagdoll.EnableRagdoll();
+
+                // Invoke the respawn after 3 seconds
+                Invoke("TriggerRespawn", 2f);
+            }
+        }
+    }
+
+    // Call this method after 3 seconds to respawn the player
+    void TriggerRespawn()
+    {
+        Debug.Log("Triggering Respawn");
+        if (gameManager != null)
+        {
+            gameManager.EndGame();
+        }
+    }
 }

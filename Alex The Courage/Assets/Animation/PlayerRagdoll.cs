@@ -34,7 +34,7 @@ public class PlayerRagdoll : MonoBehaviour
         }
     }
 
-    private void EnableRagdoll()
+    public void EnableRagdoll()
     {
         _animator.enabled = false;
         _characterController.enabled = false;

@@ -339,12 +339,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Checkpoint"))
+        if (other.gameObject.tag == "Obstacless")
         {
-            gameManager.isCheckpointReached = true;
-            gameManager.checkpoint = other.transform.position;
-            Destroy(other.gameObject);
-            FindObjectOfType<AudioManager>().Play("Checkpoint");
+            if (!lastKnockbackTime.HasValue || Time.time - lastKnockbackTime.Value > knockbackCooldown)
+            {
+                // Calculate the direction from the obstacle to the player
+                Vector3 directionFromCubeToPlayer = transform.position - other.transform.position;
+                directionFromCubeToPlayer.y = 0;  // Assuming you want to keep knockback horizontal
+                directionFromCubeToPlayer.Normalize();  // Make it a unit vector
+
+                Knockback(directionFromCubeToPlayer);  // Call the Knockback function here
+
+                lastKnockbackTime = Time.time;
+            }
         }
     }
 
