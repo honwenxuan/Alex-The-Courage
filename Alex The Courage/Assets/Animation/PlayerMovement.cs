@@ -344,6 +344,7 @@ public class PlayerMovement : MonoBehaviour
             gameManager.isCheckpointReached = true;
             gameManager.checkpoint = other.transform.position;
             Destroy(other.gameObject);
+            FindObjectOfType<AudioManager>().Play("Checkpoint");
         }
     }
 

@@ -45,28 +45,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - name: Explode
+    clip: {fileID: 8300000, guid: 2af2075c35832534889d5452e4e14777, type: 3}
+    volume: 0.2
+    pitch: 1.02
+    loop: 0
+    source: {fileID: 0}
   - name: Jump
     clip: {fileID: 8300000, guid: 972109eb12c449842a1e8976c3375986, type: 3}
     volume: 1
-    pitch: 1.59
+    pitch: 1.02
     loop: 0
     source: {fileID: 0}
   - name: Roll
     clip: {fileID: 8300000, guid: 9c3d4d7ae9e04b849875aad8fc11ecf0, type: 3}
     volume: 1
-    pitch: 1.59
+    pitch: 1.02
     loop: 0
     source: {fileID: 0}
   - name: Click
     clip: {fileID: 8300000, guid: 32f7f80b76ce63b48a1bc51fd1f48c5d, type: 3}
     volume: 1
-    pitch: 1.59
+    pitch: 1.02
     loop: 0
     source: {fileID: 0}
-  - name: Explode
-    clip: {fileID: 8300000, guid: 2af2075c35832534889d5452e4e14777, type: 3}
-    volume: 0.2
-    pitch: 1.59
+  - name: Checkpoint
+    clip: {fileID: 8300000, guid: 32f7f80b76ce63b48a1bc51fd1f48c5d, type: 3}
+    volume: 1
+    pitch: 1.02
     loop: 0
     source: {fileID: 0}
   masterMixerGroup: {fileID: 24300002, guid: aab9e4e592828f244a3269cc36335ec6, type: 2}
