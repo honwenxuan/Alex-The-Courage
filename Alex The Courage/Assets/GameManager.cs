@@ -44,7 +44,19 @@ public class GameManager : MonoBehaviour
 
     public void CompleteLevel()
     {
+        Invoke("SetActiveDelayed", 1.0f);
+        Invoke("FreezeGame", 3.0f);
+    }
+
+    // Method to set completeLevelUI active
+    private void SetActiveDelayed()
+    {
         completeLevelUI.SetActive(true);
+    }
+
+    private void FreezeGame()
+    {
+        Time.timeScale = 0f;
     }
 
     public void Restart()
