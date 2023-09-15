@@ -50,11 +50,14 @@ public class PlayerMovement : MonoBehaviour
     //knockback
     private Vector3 knockbackDirection;
     private float knockbackDuration = 0.5f;  // 0.5 seconds, change as needed
-    private float knockbackSpeed = 15f;  // speed of knockback
+    private float knockbackSpeed = 30f;  // speed of knockback
+    private float fixedKnockbackDistance = 6f;  // specify the fixed distance for knockback here
+    private float knockbackCoveredDistance = 0f;
     private float? knockbackStartTime;  // time when knockback started
     private bool isKnockedBack = false;  // flag for knockback state
     private float? lastKnockbackTime;
     private float knockbackCooldown = 1.0f;
+
     void Start()
     {
         // Find the player's mesh renderer in the child objects
@@ -77,18 +80,20 @@ public class PlayerMovement : MonoBehaviour
         if (isKnockedBack)
         {
             float elapsed = Time.time - knockbackStartTime.Value;
-            if (elapsed < knockbackDuration)
+
+            if (knockbackCoveredDistance < fixedKnockbackDistance)
             {
                 // Apply knockback movement
-                Vector3 knockbackVelocity = knockbackDirection * knockbackSpeed;
-                knockbackVelocity.y = ySpeed;
-                characterController.Move(knockbackVelocity * Time.deltaTime);
-                return;  // Exit the Update early if knockback is in effect
+                Vector3 knockbackVelocity = knockbackDirection * knockbackSpeed * Time.deltaTime;
+                knockbackCoveredDistance += knockbackVelocity.magnitude;
+                characterController.Move(knockbackVelocity);
             }
             else
             {
                 isKnockedBack = false;
+                knockbackCoveredDistance = 0f; // reset the distance for the next knockback
             }
+            return;
         }
 
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -182,6 +187,7 @@ public class PlayerMovement : MonoBehaviour
         knockbackDirection = directionFromCubeToPlayer.normalized;
         knockbackStartTime = Time.time;
         isKnockedBack = true;
+        knockbackCoveredDistance = 0f; // reset the distance for this new knockback
     }
     public void SlowDownPlayer(float slowDownFactor, float duration)
     {
