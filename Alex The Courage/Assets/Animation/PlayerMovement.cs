@@ -315,7 +315,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.tag == "Obstacless")
+        if (hit.gameObject.CompareTag("Obstacless"))
         {
             if (!lastKnockbackTime.HasValue || Time.time - lastKnockbackTime.Value > knockbackCooldown)
             {
@@ -339,7 +339,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Obstacless")
+        if (other.gameObject.CompareTag("Obstacless"))
         {
             if (!lastKnockbackTime.HasValue || Time.time - lastKnockbackTime.Value > knockbackCooldown)
             {
@@ -351,7 +351,16 @@ public class PlayerMovement : MonoBehaviour
                 Knockback(directionFromCubeToPlayer);  // Call the Knockback function here
 
                 lastKnockbackTime = Time.time;
+
             }
+        }
+
+        if (other.gameObject.CompareTag("Checkpoint"))
+        {
+            gameManager.isCheckpointReached = true;
+            gameManager.checkpoint = other.transform.position;
+            Destroy(other.gameObject);
+            FindObjectOfType<AudioManager>().Play("Checkpoint");
         }
     }
 

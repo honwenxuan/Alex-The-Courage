@@ -70,7 +70,19 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Checkpoint
-    clip: {fileID: 8300000, guid: 32f7f80b76ce63b48a1bc51fd1f48c5d, type: 3}
+    clip: {fileID: 8300000, guid: 4288b5a9887b7dc4f8aab8eb82a7207b, type: 3}
+    volume: 1
+    pitch: 1.02
+    loop: 0
+    source: {fileID: 0}
+  - name: Chest attack
+    clip: {fileID: 8300000, guid: b804b290f9a790e49a39f0579ca43a26, type: 3}
+    volume: 1
+    pitch: 1.02
+    loop: 0
+    source: {fileID: 0}
+  - name: Ranged attack
+    clip: {fileID: 8300000, guid: 5eb083289b9acaa45aac391124f89396, type: 3}
     volume: 1
     pitch: 1.02
     loop: 0
