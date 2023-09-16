@@ -12,7 +12,7 @@ public class FloatingPlatform : MonoBehaviour
     private Vector3 endPoint;
     private Vector3 lastPosition; // Store last position to calculate the delta
     private Transform playerTransform = null;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +26,7 @@ public class FloatingPlatform : MonoBehaviour
     {
         MovePlatform();
     }
-
+    
     // Move the platform between startPoint and endPoint
     void MovePlatform()
     {
@@ -40,15 +40,15 @@ public class FloatingPlatform : MonoBehaviour
         // Move the player along with the platform
         if (playerTransform != null)
         {
+            Debug.Log("Moving player.");
             playerTransform.position += deltaPosition;
         }
     }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            playerTransform = other.transform;
+            other.transform.SetParent(transform, true);
         }
     }
 
@@ -56,7 +56,7 @@ public class FloatingPlatform : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            playerTransform = null;
+            other.transform.parent = null;
         }
     }
 }

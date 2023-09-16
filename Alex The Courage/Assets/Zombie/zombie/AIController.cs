@@ -89,6 +89,7 @@ public class AIController : MonoBehaviour
     private void Attacking()
     {
        
+
         Quaternion rotationToLookAt = Quaternion.LookRotation(player.position - transform.position);
         float rotationSpeed = 10f;
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationToLookAt, Time.deltaTime * rotationSpeed);
