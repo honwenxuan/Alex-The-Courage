@@ -81,13 +81,15 @@ public class AIController : MonoBehaviour
     }
     private void Attacking()
     {
-        transform.LookAt(player);
+        Quaternion rotationToLookAt = Quaternion.LookRotation(player.position - transform.position);
+        float rotationSpeed = 10f;
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotationToLookAt, Time.deltaTime * rotationSpeed);
+
 
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             animator.SetTrigger("Attack");
             agent.SetDestination(transform.position);
-
         }
     }
 

@@ -84,4 +84,6 @@ public class GameManager : MonoBehaviour
             playerRagdoll.RefreshRagdoll();
         }
     }
+
+
 }
