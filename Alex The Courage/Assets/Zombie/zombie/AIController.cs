@@ -1,43 +1,63 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.AI;
 
 public class AIController : MonoBehaviour
 {
-    public NavMeshAgent navMeshAgent;
-    public float startWaitTime = 4;
-    public float timeToRotate = 2;
-    public float speedWalk = 6;
-    public float speedRun = 9;
+    /*  public NavMeshAgent navMeshAgent;
+      public float startWaitTime = 4;
+      public float timeToRotate = 2;
+      public float speedWalk = 6;
+      public float speedRun = 9;
 
-    public float viewRadius = 15;
-    public float viewAngle = 90;
-    public LayerMask playerMask;
-    public LayerMask obstacleMask;
-    public float meshResolution = 1.0f;
-    public int edgeIterations = 4;
-    public float edgeDistance = 0.5f;
+      public float viewRadius = 15;
+      public float viewAngle = 90;
+      public LayerMask playerMask;
+      public LayerMask obstacleMask;
+      public float meshResolution = 1.0f;
+      public int edgeIterations = 4;
+      public float edgeDistance = 0.5f;
 
-    public Transform[] waypoints;
-    private int m_CurrentWaypointIndex;
+      public Transform[] waypoints;
+      private int m_CurrentWaypointIndex;
 
-    private Vector3 playerLastPosition = Vector3.zero;
-    private Vector3 m_PlayerPosition;
-    private Transform playerTransform;
+      private Vector3 playerLastPosition = Vector3.zero;
+      private Vector3 m_PlayerPosition;
+      private Transform playerTransform;
 
-    private float m_WaitTime;
-    private float m_TimeToRotate;
-    private bool m_playerInRange;
-    private bool m_PlayerNear;
-    private bool m_IsPatrol;
-    private bool m_CaughtPlayer;
+      private float m_WaitTime;
+      private float m_TimeToRotate;
+      private bool m_playerInRange;
+      private bool m_PlayerNear;
+      private bool m_IsPatrol;
+      private bool m_CaughtPlayer;
+      Animator animate;*/
     private PlayerRagdoll playerRagdoll;
-    Animator animate;
-    
+   
+    public NavMeshAgent agent;
+    public Transform player;
+    public LayerMask whatIsGround, whatIsPlayer;
+
+    private Animator animator;
+    private Rigidbody rb;
+
+    // Patrolling
+    public Transform patrolCenterPoint;
+    public float patrolRange;
+    private Vector3 patrolTarget;
+    private bool isPatrolling = true;
+
+    // Attacking
+    public float timeBetweenAttacks;
+    private bool alreadyAttacked;
+
+    // States
+    public float sightRange, attackRange;
+    private bool playerInSightRange, playerInAttackRange;
+
     void Start()
     {
-        playerRagdoll = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRagdoll>();
+       /* playerRagdoll = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRagdoll>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         m_PlayerPosition = Vector3.zero;
         m_IsPatrol = true;
@@ -57,27 +77,34 @@ public class AIController : MonoBehaviour
             navMeshAgent.isStopped = false;
             navMeshAgent.speed = speedWalk;
             navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
-        }
+        }*/
     }
 
     private void Update()
     {
-        EnviromentView();
-        if (playerRagdoll.IsRagdollEnabled)
-        {
-            Debug.Log("Enemy aware of player's ragdoll state.");
-            Stop();
-            return;
-        }
+        /* EnviromentView();
 
-        if (m_playerInRange && !m_IsPatrol)
-        {
-            Chasing();
-        }
-        else
-        {
-            Patroling();
-        }
+         if (playerRagdoll.IsRagdollEnabled)
+         {
+             Debug.Log("Enemy aware of player's ragdoll state.");
+             Stop();
+             return;
+         }
+
+         if (m_playerInRange && !m_IsPatrol)
+         {
+             Chasing();
+         }
+         else
+         {
+             Patroling();
+         }*/
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        if (!playerInSightRange && !playerInAttackRange) Patrolling();
+        if (playerInSightRange && !playerInAttackRange) Chasing();
+        if (playerInSightRange && playerInAttackRange) Attacking();
     }
     public void EndOfAttack()
     {
@@ -86,76 +113,98 @@ public class AIController : MonoBehaviour
     }
     private void Chasing()
     {
-        m_PlayerNear = false;
-        m_IsPatrol = false;
+        /* m_PlayerNear = false;
+         m_IsPatrol = false;
 
-        if (playerRagdoll.IsRagdollEnabled)
-        {
-            // Stop all AI activities if the player is in ragdoll mode
-            Stop();
-            return;
-        }
+         if (playerRagdoll.IsRagdollEnabled)
+         {
+             // Stop all AI activities if the player is in ragdoll mode
+             Stop();
+             return;
+         }
 
-        // Check if enemy is close enough to the player to start attacking
-        if (Vector3.Distance(transform.position, playerTransform.position) < 1.8f) // 3.0f is the attack range
-        {
-            animate.SetBool("IsAttacking", true);
-            animate.SetBool("IsMoving", false);  // Stop the enemy from moving when attacking
-            
-            return;  // Return from the function, effectively preventing the code below from running
-        }
-        else
-        {
-            animate.SetBool("IsAttacking", false);
-        }
+         // Check if enemy is close enough to the player to start attacking
+         if (Vector3.Distance(transform.position, playerTransform.position) < 1.8f) // 3.0f is the attack range
+         {
+             animate.SetBool("IsAttacking", true);
+             animate.SetBool("IsMoving", false);  // Stop the enemy from moving when attacking
 
-        // If the AI hasn't caught the player yet, continue chasing
-        if (!m_CaughtPlayer)
-        {
-            Move(speedRun);
-            navMeshAgent.SetDestination(playerTransform.position);
-        }
+             return;  // Return from the function, effectively preventing the code below from running
+         }
+         else
+         {
+             animate.SetBool("IsAttacking", false);
+         }
 
-        // If AI has reached the player's last known position and still doesn't see the player, return to patrolling
-        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+         // If the AI hasn't caught the player yet, continue chasing
+         if (!m_CaughtPlayer)
+         {
+             Move(speedRun);
+             navMeshAgent.SetDestination(playerTransform.position);
+         }
+
+         // If AI has reached the player's last known position and still doesn't see the player, return to patrolling
+         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+         {
+             if (!m_playerInRange)
+             {
+                 m_IsPatrol = true;
+                 return;
+             }
+             HandleStoppingDistance();
+
+         }*/
+        isPatrolling = false;
+        agent.SetDestination(player.position);
         {
-            if (!m_playerInRange)
+            agent.SetDestination(player.position);
+
+            if (Vector3.Distance(transform.position, patrolCenterPoint.position) > patrolRange)
             {
-                m_IsPatrol = true;
-                return;
+                isPatrolling = true;
+                agent.SetDestination(patrolCenterPoint.position);
             }
-            HandleStoppingDistance();
+        }
+    }
+    private void Attacking()
+    {
+        transform.LookAt(player);
+
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            animator.SetTrigger("Attack");
+            agent.SetDestination(transform.position);
+            //ActivateRagdoll();
         }
     }
 
+    /* private void HandleStoppingDistance()
+     {
+         if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
+         {
+             m_IsPatrol = true;
+             m_PlayerNear = false;
+             Move(speedWalk);
+             m_TimeToRotate = timeToRotate;
+             m_WaitTime = startWaitTime;
+             if (waypoints.Length > 0 && m_CurrentWaypointIndex < waypoints.Length) // Added a check here
+             {
+                 navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+             }
+         }
+         else
+         {
+             if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 2.5f)
+             {
+                 Stop();
+             }
+             m_WaitTime -= Time.deltaTime;
+         }
+     }*/
 
-    private void HandleStoppingDistance()
+    private void Patrolling()
     {
-        if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
-        {
-            m_IsPatrol = true;
-            m_PlayerNear = false;
-            Move(speedWalk);
-            m_TimeToRotate = timeToRotate;
-            m_WaitTime = startWaitTime;
-            if (waypoints.Length > 0 && m_CurrentWaypointIndex < waypoints.Length) // Added a check here
-            {
-                navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
-            }
-        }
-        else
-        {
-            if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 2.5f)
-            {
-                Stop();
-            }
-            m_WaitTime -= Time.deltaTime;
-        }
-    }
-
-    private void Patroling()
-    {
-        HandlePlayerNear();
+        /*HandlePlayerNear();
 
         if (!m_PlayerNear && waypoints.Length > 0 && m_CurrentWaypointIndex < waypoints.Length) // Added a check here
         {
@@ -164,10 +213,27 @@ public class AIController : MonoBehaviour
             {
                 HandlePatrolStoppingDistance();
             }
+        }*/
+        if (agent.remainingDistance < 1.0f)
+        {
+            patrolTarget = GetRandomPatrolTarget();
+            agent.SetDestination(patrolTarget);
         }
     }
 
-    private void HandlePlayerNear()
+    private Vector3 GetRandomPatrolTarget()
+    {
+        Vector3 randomPoint = patrolCenterPoint.position + Random.insideUnitSphere * patrolRange;
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomPoint, out hit, 50.0f, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+        return patrolCenterPoint.position;
+    }
+
+
+    /*private void HandlePlayerNear()
     {
         if (m_PlayerNear)
         {
@@ -182,9 +248,9 @@ public class AIController : MonoBehaviour
                 m_TimeToRotate -= Time.deltaTime;
             }
         }
-    }
+    }*/
 
-    private void HandlePatrolStoppingDistance()
+   /* private void HandlePatrolStoppingDistance()
     {
         if (m_WaitTime <= 0)
         {
@@ -198,8 +264,8 @@ public class AIController : MonoBehaviour
             m_WaitTime -= Time.deltaTime;
         }
     }
-
-    public void NextPoint()
+*/
+   /* public void NextPoint()
     {
         if (waypoints.Length == 0) return; // Guard against empty array
         m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
@@ -275,29 +341,29 @@ public class AIController : MonoBehaviour
                 }
                 else
                 {
-                    /*
+                    *//*
                      *  If the player is behind a obstacle the player position will not be registered
-                     * */
+                     * *//*
                     m_playerInRange = false;
                 }
             }
             if (Vector3.Distance(transform.position, player.position) > viewRadius)
             {
-                /*
+                *//*
                  *  If the player is further than the view radius, then the enemy will no longer keep the player's current position.
                  *  Or the enemy is a safe zone, the enemy will no chase
-                 * */
+                 * *//*
                 m_playerInRange = false;                //  Change the sate of chasing
             }
             if (m_playerInRange)
             {
-                /*
+                *//*
                  *  If the enemy no longer sees the player, then the enemy will go to the last position that has been registered
-                 * */
+                 * *//*
                 m_PlayerPosition = player.transform.position;       //  Save the player's current position if the player is in range of vision
             }
         }
-    }
+    }*/
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Enemy hit player");
