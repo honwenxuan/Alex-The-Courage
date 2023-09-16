@@ -6,6 +6,17 @@ public class EndTrigger : MonoBehaviour
     public bool isFinished;
     public Animator animator;
     public GameManager gameManager;
+    public Animator otherModelAnimator;
+
+    void Start()
+    {
+        // Assuming the other model has a tag "OtherModel"
+        GameObject otherModel = GameObject.FindGameObjectWithTag("Princess");
+        if (otherModel != null)
+        {
+            otherModelAnimator = otherModel.GetComponent<Animator>();
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,6 +27,11 @@ public class EndTrigger : MonoBehaviour
             {
                 gameManager.CompleteLevel();
                 animator.SetBool("IsFinished", true);
+                if (otherModelAnimator != null)
+                {
+                    otherModelAnimator.SetTrigger("Victory");
+                }
+
                 // Unlock the cursor and make it visible
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
