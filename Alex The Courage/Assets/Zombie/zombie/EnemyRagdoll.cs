@@ -116,7 +116,7 @@ public class EnemyRagdoll : MonoBehaviour
     {
         Debug.Log("Collision detected with " + collision.gameObject.name);
         // Check if the enemy collides with a GameObject that has the tag "Cube"
-        if (collision.gameObject.tag == "KnockDownCube")
+        if (collision.gameObject.tag == "Obstacless")
         {
             Vector3 force = new Vector3(0, 5, 10); // Arbitrary force
             Vector3 hitPoint = collision.contacts[0].point; // Point of contact
