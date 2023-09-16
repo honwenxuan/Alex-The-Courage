@@ -227,6 +227,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleGroundedStatus()
     {
+
         if (characterController.isGrounded)
         {
             lastGroundedTime = Time.time;

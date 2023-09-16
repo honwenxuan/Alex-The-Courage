@@ -13,10 +13,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Update running");
+        //Debug.Log("Update running");
 
         // Debug the player's y position
-        Debug.Log("Player's Y Position: " + player.transform.position.y);
+        //Debug.Log("Player's Y Position: " + player.transform.position.y);
 
         if (player.transform.position.y < 70)
         {
