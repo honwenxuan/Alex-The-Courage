@@ -47,6 +47,7 @@ public class PlayerRagdoll : MonoBehaviour
         }
         IsRagdollEnabled = true;
         Debug.Log("Ragdoll Enabled");
+        FindObjectOfType<AudioManager>().Play("Die");
     }
 
     public void RefreshRagdoll()

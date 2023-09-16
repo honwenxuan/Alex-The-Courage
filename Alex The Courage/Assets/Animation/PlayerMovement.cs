@@ -342,7 +342,7 @@ public class PlayerMovement : MonoBehaviour
         if (hit.gameObject.CompareTag("Enemy") || hit.gameObject.CompareTag("Bullet"))
         {
             HandleHitReaction();
-            FindObjectOfType<AudioManager>().Play("Die");
+            FindObjectOfType<AudioManager>().Play("Hit");
             FindObjectOfType<GameManager>().EndGame();
         }
     }

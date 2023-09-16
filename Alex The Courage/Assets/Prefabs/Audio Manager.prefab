@@ -99,4 +99,10 @@ MonoBehaviour:
     pitch: 1.02
     loop: 1
     source: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 8300000, guid: 01d5b729b60459747ae23fe1696d4ebf, type: 3}
+    volume: 0.51
+    pitch: 1.02
+    loop: 0
+    source: {fileID: 0}
   masterMixerGroup: {fileID: 24300002, guid: aab9e4e592828f244a3269cc36335ec6, type: 2}
