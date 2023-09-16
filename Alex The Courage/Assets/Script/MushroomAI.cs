@@ -1,11 +1,8 @@
-//using System;
-//using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CollisionEnemyAI : MonoBehaviour
+public class MushroomAI : MonoBehaviour
 {
-
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
