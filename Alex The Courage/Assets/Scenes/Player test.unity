@@ -2497,6 +2497,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5487996413377644369, guid: 39d6aaaf9e4d2ae48b5bb66688e67401, type: 3}
+      propertyPath: m_Size.x
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487996413377644369, guid: 39d6aaaf9e4d2ae48b5bb66688e67401, type: 3}
+      propertyPath: m_Size.y
+      value: 1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487996413377644369, guid: 39d6aaaf9e4d2ae48b5bb66688e67401, type: 3}
+      propertyPath: m_Size.z
+      value: 0.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487996413377644369, guid: 39d6aaaf9e4d2ae48b5bb66688e67401, type: 3}
+      propertyPath: m_Center.y
+      value: 0.91
+      objectReference: {fileID: 0}
     - target: {fileID: 7785421479090610460, guid: 39d6aaaf9e4d2ae48b5bb66688e67401, type: 3}
       propertyPath: agent
       value: 
@@ -2543,7 +2559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8144015133645279630, guid: 39d6aaaf9e4d2ae48b5bb66688e67401, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3729,15 +3745,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3159168119642753279, guid: 2a355be88013cfb4586f310dc186a7ec, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.06190197
+      value: 0.061901994
       objectReference: {fileID: 0}
     - target: {fileID: 3159168119642753279, guid: 2a355be88013cfb4586f310dc186a7ec, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0868043
+      value: -0.08680426
       objectReference: {fileID: 0}
     - target: {fileID: 3159168119642753279, guid: 2a355be88013cfb4586f310dc186a7ec, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.005404239
+      value: 0.0054042386
       objectReference: {fileID: 0}
     - target: {fileID: 3552691211052924457, guid: 2a355be88013cfb4586f310dc186a7ec, type: 3}
       propertyPath: m_Name
