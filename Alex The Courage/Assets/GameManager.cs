@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     public Vector3 checkpoint;
     public bool isCheckpointReached = false;
 
+    private void Start()
+    {
+        Time.timeScale = 1f;
+    }
 
     private void Update()
     {
