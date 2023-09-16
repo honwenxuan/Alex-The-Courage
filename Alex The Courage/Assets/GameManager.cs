@@ -13,16 +13,24 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Update running");
 
-        // respawn when player fall down
-        if (player.transform.position.y < -10)
+        // Debug the player's y position
+        Debug.Log("Player's Y Position: " + player.transform.position.y);
+
+        if (player.transform.position.y < 70)
         {
+            // Debug to verify this block is entered
+            Debug.Log("Player fell below 73, attempting to respawn...");
+
             if (isCheckpointReached)
             {
+                Debug.Log("Checkpoint reached, invoking CheckpointRespawn");
                 Invoke("CheckpointRespawn", respawnDelay);
             }
             else
             {
+                Debug.Log("No checkpoint, invoking Respawn");
                 Invoke("Respawn", respawnDelay);
             }
         }
