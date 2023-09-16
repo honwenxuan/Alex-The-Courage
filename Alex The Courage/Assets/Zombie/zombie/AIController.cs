@@ -57,27 +57,30 @@ public class AIController : MonoBehaviour
 
     void Start()
     {
-       /* playerRagdoll = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRagdoll>();
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        m_PlayerPosition = Vector3.zero;
-        m_IsPatrol = true;
-        m_CaughtPlayer = false;
-        m_playerInRange = false;
-        m_PlayerNear = false;
-        m_WaitTime = startWaitTime;
-        m_TimeToRotate = timeToRotate;
+        agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        patrolTarget = GetRandomPatrolTarget();
+        /* playerRagdoll = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRagdoll>();
+         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+         m_PlayerPosition = Vector3.zero;
+         m_IsPatrol = true;
+         m_CaughtPlayer = false;
+         m_playerInRange = false;
+         m_PlayerNear = false;
+         m_WaitTime = startWaitTime;
+         m_TimeToRotate = timeToRotate;
 
-        m_CurrentWaypointIndex = 0;
-        navMeshAgent = GetComponent<NavMeshAgent>();
+         m_CurrentWaypointIndex = 0;
+         navMeshAgent = GetComponent<NavMeshAgent>();
 
-        animate = GetComponent<Animator>();
+         animate = GetComponent<Animator>();
 
-        if (waypoints.Length > 0) // Added a check here to ensure waypoints are set.
-        {
-            navMeshAgent.isStopped = false;
-            navMeshAgent.speed = speedWalk;
-            navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
-        }*/
+         if (waypoints.Length > 0) // Added a check here to ensure waypoints are set.
+         {
+             navMeshAgent.isStopped = false;
+             navMeshAgent.speed = speedWalk;
+             navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+         }*/
     }
 
     private void Update()
@@ -106,11 +109,11 @@ public class AIController : MonoBehaviour
         if (playerInSightRange && !playerInAttackRange) Chasing();
         if (playerInSightRange && playerInAttackRange) Attacking();
     }
-    public void EndOfAttack()
+   /* public void EndOfAttack()
     {
         Debug.Log("Attack animation finished. Enabling player ragdoll.");
         playerRagdoll.EnableRagdoll();
-    }
+    }*/
     private void Chasing()
     {
         /* m_PlayerNear = false;
