@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - Checkpoint
   - Obstacless
+  - Wall
+  - Princess
   layers:
   - Default
   - TransparentFX
