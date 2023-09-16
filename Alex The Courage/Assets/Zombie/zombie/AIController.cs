@@ -29,12 +29,12 @@ public class AIController : MonoBehaviour
 
     void Start()
     {
-       /* playerRagdoll = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRagdoll>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;*/
+      
+        
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         patrolTarget = GetRandomPatrolTarget();
-        
+        playerRagdoll = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRagdoll>();
     }
 
     private void Update()
