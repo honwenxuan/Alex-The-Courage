@@ -23,7 +23,7 @@ public class KillPlayer : MonoBehaviour
             {
                 Debug.Log("Enabling Ragdoll");
                 playerRagdoll.EnableRagdoll();
-                FindObjectOfType<AudioManager>().Play("Explode");
+                FindObjectOfType<AudioManager>().Play("Die");
                 TriggerRespawn();
             }
         }

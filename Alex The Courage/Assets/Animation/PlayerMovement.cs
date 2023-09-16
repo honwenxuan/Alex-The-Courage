@@ -193,6 +193,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log($"Original Speed: {originalWalkingSpeed}");
 
+        FindObjectOfType<AudioManager>().Play("Slimy");
+
         // Change the material color to the blue overlay material
         playerRenderer.material = blueOverlayMaterial;
 
@@ -216,6 +218,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log($"Restoring to Original Speed: {originalWalkingSpeed}");
         walkingSpeed = originalWalkingSpeed; // Restore the speed
+        FindObjectOfType<AudioManager>().Stop("Slimy");
 
         // Restore the original material and color
         playerRenderer.material = originalMaterial;
@@ -333,12 +336,13 @@ public class PlayerMovement : MonoBehaviour
                 Knockback(directionFromCubeToPlayer); // Call the Knockback function here
 
                 lastKnockbackTime = Time.time;
+                FindObjectOfType<AudioManager>().Play("Knockback");
             }
         }
         if (hit.gameObject.CompareTag("Enemy") || hit.gameObject.CompareTag("Bullet"))
         {
             HandleHitReaction();
-            FindObjectOfType<AudioManager>().Play("Explode");
+            FindObjectOfType<AudioManager>().Play("Die");
             FindObjectOfType<GameManager>().EndGame();
         }
     }
@@ -357,6 +361,7 @@ public class PlayerMovement : MonoBehaviour
                 Knockback(directionFromCubeToPlayer);  // Call the Knockback function here
 
                 lastKnockbackTime = Time.time;
+                FindObjectOfType<AudioManager>().Play("Knockback");
 
             }
         }

@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Explode
-    clip: {fileID: 8300000, guid: 2af2075c35832534889d5452e4e14777, type: 3}
-    volume: 0.2
+  - name: Die
+    clip: {fileID: 8300000, guid: 6e318518a177e1345851b85f786b92fe, type: 3}
+    volume: 1
     pitch: 1.02
     loop: 0
     source: {fileID: 0}
@@ -76,7 +76,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Chest attack
-    clip: {fileID: 8300000, guid: b804b290f9a790e49a39f0579ca43a26, type: 3}
+    clip: {fileID: 8300000, guid: 7d1d2d74e489a1848875af67a05d0f64, type: 3}
     volume: 1
     pitch: 1.02
     loop: 0
@@ -86,5 +86,17 @@ MonoBehaviour:
     volume: 1
     pitch: 1.02
     loop: 0
+    source: {fileID: 0}
+  - name: Knockback
+    clip: {fileID: 8300000, guid: bd997eadeeeef33439a282aaf31350ce, type: 3}
+    volume: 1
+    pitch: 1.02
+    loop: 0
+    source: {fileID: 0}
+  - name: Slimy
+    clip: {fileID: 8300000, guid: ee5bdb4cad69bab48925f70bf4314bf5, type: 3}
+    volume: 1
+    pitch: 1.02
+    loop: 1
     source: {fileID: 0}
   masterMixerGroup: {fileID: 24300002, guid: aab9e4e592828f244a3269cc36335ec6, type: 2}

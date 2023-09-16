@@ -131,6 +131,7 @@ public class CollisionEnemyAI : MonoBehaviour
         if (player.GetComponent<PlayerMovement>()) // Check if the player has a PlayerMovement script
         {
             player.GetComponent<PlayerMovement>().SlowDownPlayer(0.5f, 2f); // Slow down player by a factor of 0.5 for 2 seconds
+            FindObjectOfType<AudioManager>().Play("Chest attack");
         }
     }
     private void ResetAttack()
