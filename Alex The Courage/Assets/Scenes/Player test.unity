@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 198931528}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2377,7 +2377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8144015133645279630, guid: 39d6aaaf9e4d2ae48b5bb66688e67401, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2544,10 +2544,6 @@ PrefabInstance:
     - target: {fileID: 5107967709496298822, guid: ea432d64906d264408d9d51f2ee1a37e, type: 3}
       propertyPath: m_Name
       value: Chest Monster
-      objectReference: {fileID: 0}
-    - target: {fileID: 5107967709496298822, guid: ea432d64906d264408d9d51f2ee1a37e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8774273659211462999, guid: ea432d64906d264408d9d51f2ee1a37e, type: 3}
       propertyPath: m_RootOrder
