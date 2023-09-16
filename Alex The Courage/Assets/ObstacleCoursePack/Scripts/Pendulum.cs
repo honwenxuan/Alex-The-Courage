@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class Pendulum : MonoBehaviour
@@ -19,8 +18,8 @@ public class Pendulum : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		float angle = limit * Mathf.Sin(Time.time + random * speed);
-		transform.localRotation = Quaternion.Euler(0, 0, angle);
-	}
-    
+        float angle = limit * Mathf.Sin(Time.time + random * speed);
+        transform.localRotation = Quaternion.Euler(0, 0, angle);
+    }
+
 }
