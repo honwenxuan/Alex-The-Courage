@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 4070211215779280173}
   m_Layer: 0
   m_Name: MushroomSmilePBR
-  m_TagString: Untagged
+  m_TagString: Obstacless
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,7 +166,7 @@ Transform:
   - {fileID: 3799991663726631102}
   - {fileID: 4971366520584185620}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1691260113314563210
 Animator:
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 3487069697727838358}
   m_Layer: 0
   m_Name: mushroom
-  m_TagString: Untagged
+  m_TagString: Obstacless
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
