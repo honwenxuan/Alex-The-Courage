@@ -1,27 +1,39 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FallPlat : MonoBehaviour
+public class FallingPlatform : MonoBehaviour
 {
-	public float fallTime = 0.5f;
+    public float waitTimeBeforeFall = 2.0f; // Time in seconds to wait before the platform starts falling
+    private Rigidbody rb;
+    private bool isFalling = false;
 
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;  // Initially, the platform should not be affected by gravity
+    }
 
-	void OnCollisionEnter(Collision collision)
-	{
-		foreach (ContactPoint contact in collision.contacts)
-		{
-			//Debug.DrawRay(contact.point, contact.normal, Color.white);
-			if (collision.gameObject.tag == "Player")
-			{
-				StartCoroutine(Fall(fallTime));
-			}
-		}
-	}
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collide with player");
+        // If the platform is already falling, ignore further collisions
+        if (isFalling)
+            return;
 
-	IEnumerator Fall(float time)
-	{
-		yield return new WaitForSeconds(time);
-		Destroy(gameObject);
-	}
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // Start the coroutine to make the platform fall
+            StartCoroutine(FallAfterSeconds(waitTimeBeforeFall));
+        }
+    }
+
+    IEnumerator FallAfterSeconds(float seconds)
+    {
+        // Wait for the specified time
+        yield return new WaitForSeconds(seconds);
+
+        // Now make the platform fall
+        rb.isKinematic = false;
+        isFalling = true; // Set the flag to ignore further collisions
+    }
 }
