@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class FloatingPlatform : MonoBehaviour
 {
-    public float speed = 2.0f;  // Speed at which the platform moves
-    public float distance = 5.0f; // Distance between the two points
-    public Vector3 direction = new Vector3(0, 0, 10); // Direction of movement
+    public float speed = 0.3f;  // Speed at which the platform moves
+    public float distance = 50f; // Distance between the two points
+    public Vector3 direction = new Vector3(0, 0, -1); // Direction of movement
 
     private Vector3 startPoint;
     private Vector3 endPoint;
     private Vector3 lastPosition; // Store last position to calculate the delta
     private Transform playerTransform = null;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +26,7 @@ public class FloatingPlatform : MonoBehaviour
     {
         MovePlatform();
     }
-    
+
     // Move the platform between startPoint and endPoint
     void MovePlatform()
     {
@@ -40,15 +40,15 @@ public class FloatingPlatform : MonoBehaviour
         // Move the player along with the platform
         if (playerTransform != null)
         {
-            Debug.Log("Moving player.");
             playerTransform.position += deltaPosition;
         }
     }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            other.transform.SetParent(transform, true);
+            playerTransform = other.transform;
         }
     }
 
@@ -56,7 +56,7 @@ public class FloatingPlatform : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.transform.parent = null;
+            playerTransform = null;
         }
     }
 }
