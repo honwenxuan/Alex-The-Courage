@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4151592446882735011}
   - component: {fileID: 5539481009490423693}
   - component: {fileID: 867161118461663832}
-  - component: {fileID: 1255178254992637252}
   m_Layer: 0
   m_Name: MovingPlatform
   m_TagString: Untagged
@@ -34,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 38
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8324045059962229619
 MeshFilter:
@@ -128,18 +127,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.9877983}
   m_Center: {x: 0, y: 0, z: -0.001856299}
---- !u!114 &1255178254992637252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7387610766712447776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c66861cc1ff5d85458bc6724e21f0be5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.3
-  distance: 50
-  direction: {x: 0, y: 0, z: -1}
