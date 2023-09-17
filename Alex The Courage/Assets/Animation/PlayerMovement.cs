@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     //knockback
     private Vector3 knockbackDirection;
     private float knockbackDuration = 0.5f;  // 0.5 seconds, change as needed
-    private float knockbackSpeed = 30f;  // speed of knockback
+    private float knockbackSpeed = 25f;  // speed of knockback
     private float fixedKnockbackDistance = 6f;  // specify the fixed distance for knockback here
     private float knockbackCoveredDistance = 0f;
     private float? knockbackStartTime;  // time when knockback started
@@ -92,6 +92,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 isKnockedBack = false;
                 knockbackCoveredDistance = 0f; // reset the distance for the next knockback
+                animator.SetBool("IsFalling", false);
+                animator.SetBool("IsGrounded", true);
             }
             return;
         }
@@ -184,6 +186,10 @@ public class PlayerMovement : MonoBehaviour
     private void Knockback(Vector3 directionFromCubeToPlayer)
     {
         Debug.Log("Knockback called");
+
+        animator.SetBool("IsFalling", true);
+        animator.SetBool("IsGrounded", false);
+
         knockbackDirection = directionFromCubeToPlayer.normalized;
         knockbackStartTime = Time.time;
         isKnockedBack = true;
@@ -335,7 +341,7 @@ public class PlayerMovement : MonoBehaviour
                 directionFromCubeToPlayer.Normalize(); // Make it a unit vector
 
                 Knockback(directionFromCubeToPlayer); // Call the Knockback function here
-
+                
                 lastKnockbackTime = Time.time;
                 FindObjectOfType<AudioManager>().Play("Knockback");
             }
@@ -360,7 +366,7 @@ public class PlayerMovement : MonoBehaviour
                 directionFromCubeToPlayer.Normalize();  // Make it a unit vector
 
                 Knockback(directionFromCubeToPlayer);  // Call the Knockback function here
-
+               
                 lastKnockbackTime = Time.time;
                 FindObjectOfType<AudioManager>().Play("Knockback");
 
