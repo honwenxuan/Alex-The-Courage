@@ -320,14 +320,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-   /* private void HandleHitReaction()
+    private void HandleHitReaction()
     {
 
         // Trigger the 'GotHit' animation.
         animator.SetBool("IsHit", true);
 
         // Here you could add more reactions, like reducing health, etc.
-    }*/
+    }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -346,12 +346,12 @@ public class PlayerMovement : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("Knockback");
             }
         }
-       /* if (hit.gameObject.CompareTag("Enemy") || hit.gameObject.CompareTag("Bullet"))
+        if (hit.gameObject.CompareTag("Enemy") || hit.gameObject.CompareTag("Bullet"))
         {
             HandleHitReaction();
             FindObjectOfType<AudioManager>().Play("Hit");
             FindObjectOfType<GameManager>().EndGame();
-        }*/
+        }
     }
 
     private void OnTriggerEnter(Collider other)
