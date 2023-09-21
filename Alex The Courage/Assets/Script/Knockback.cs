@@ -7,8 +7,8 @@ public class Knockback : MonoBehaviour
 
     //knockback
     private Vector3 knockbackDirection;
-    private float knockbackDuration = 0.5f;  // 0.5 seconds, change as needed
-    private float knockbackSpeed = 15f;  // speed of knockback
+    //private float knockbackDuration = 0.5f;  // 0.5 seconds, change as needed
+   //private float knockbackSpeed = 15f;  // speed of knockback
     private float? knockbackStartTime;  // time when knockback started
     private bool isKnockedBack = false;  // flag for knockback state
     private float? lastKnockbackTime;
