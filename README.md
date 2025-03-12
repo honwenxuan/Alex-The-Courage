@@ -1,7 +1,7 @@
 # Alex The Courage
 A game inspired by Fall Guys. The main goal of this game is to pass through all the obstacles and enemies and reach the end point.
 
-There is no health bar, so try your best to avoid getting damaged!
+There is no health bar, so try your best to avoid getting hit!
 
 <br/>
 
