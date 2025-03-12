@@ -18,10 +18,10 @@ To play our game, simply clone this repository to your PC, and build the project
 The basic control of the game:
 
 | Keybind | Action   |
-| ------- | -------- |
-| W       | Forward  |
-| A       | Left     |
-| S       | Backward |
-| D       | Right    |
-| E       | Roll     |
-| Space   | Jump     |
+| :-----: | -------- |
+| `W`     | Forward  |
+| `A`     | Left     |
+| `S`     | Backward |
+| `D`     | Right    |
+| `E`     | Roll     |
+| `Space` | Jump     |
