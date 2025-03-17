@@ -1,5 +1,7 @@
 # Alex The Courage
-A game inspired by Fall Guys. The main goal of this game is to pass through all the obstacles and enemies and reach the end point.
+A game inspired by Fall Guys. 
+
+The main goal of this game is to pass through all the obstacles and enemies and reach the end point to save the princess.
 
 There is no health bar, so try your best to avoid getting hit!
 
